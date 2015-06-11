@@ -1,0 +1,6 @@
+useDynLib(EditImputeCont)
+exportPattern("^[[:alpha:]]+")
+import(Rcpp)
+importFrom(editrules,as.editmatrix)
+importFrom(methods,is)
+exportClasses(Rcpp_bei)
