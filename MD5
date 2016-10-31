@@ -1,4 +1,4 @@
-7c8bcf066b68d0e00c2a5645e26abe7b *DESCRIPTION
+7ab1cf19bcdaa6053224e8f1147357c5 *DESCRIPTION
 2c9adbf396752ddde646e5329129ece0 *NAMESPACE
 2d178ec343634c64fab6e0060cafb9a4 *R/Check_D_EditIn.R
 2cadef701fa623373ce38cf0dc850ef8 *R/LoadModule.R
@@ -10,15 +10,15 @@ bd6998c76edd0ffaa84271098945b396 *R/RunningMCMC.R
 666983541b638ea216e4c0095115d618 *data/SimpleEx.RData
 6ab41185a63fdb0bcc211d828c016f68 *demo/00Index
 c984b1ebdecfd587183b9f646822974a *demo/example.R
-14497ca1ec5f7267a10ccfc8d66daef8 *man/EditImputeCont-package.Rd
+3072db32542ac6606b72e0a9cfe12405 *man/EditImputeCont-package.Rd
 b7d2513c0533b14e71e0eb36441b4eb2 *man/NestedEx.Rd
-6974fc7b40f465d1f02f1303092a9ba8 *man/Rcpp_bei-class.Rd
+399b590c8920864625f304fb248e886e *man/Rcpp_bei-class.Rd
 0ab2c1af71b6404aafe5f0894ccd5369 *man/SimpleEx.Rd
 5ab36a82cd6b37ce2ec647a5eea92afc *man/bei.Rd
 e89b13ad2f99c6b10f4a6f63ba6522fb *man/createModel.Rd
 d9f03800c32e7a242db6211bfe459892 *man/makeDemoTxt.Rd
 b4d950e89a6466b25066aacc8487e37f *man/multipleEI.Rd
-5b0fdbc9d3520494708a41010dc4cd89 *man/readData.Rd
+4f9a1b4d3da6e4a3a7e278a110615186 *man/readData.Rd
 a54957970313fc6afbb2b907a73be7dc *man/scatterPlot.Rd
 a37f38e7f68b4868c9691e3de20c5110 *src/CBE.cpp
 3bd5e61c8842aca1965c6c38a37efde6 *src/CBE.h
@@ -123,7 +123,7 @@ fc837140049fb503b9bfdc724fafa535 *src/newfft.cpp
 1f298900780a962c2835cd8f1bfe27b3 *src/newmat3.cpp
 df0097e4bf39b4d996ea74f6126cfda5 *src/newmat4.cpp
 decc5c8103409e74b222c32a2089cb4a *src/newmat5.cpp
-8680a5062d4bd02e8571ffb636fb375f *src/newmat6.cpp
+0583f66382d69483773645fa7208ed0e *src/newmat6.cpp
 c6230b841f3850c0f4d6f04db80fd943 *src/newmat7.cpp
 f5cf174b7bb71b562124725edb23fb03 *src/newmat8.cpp
 260876e7dd4ced1420dd7bd242024388 *src/newmat9.cpp

@@ -43,7 +43,7 @@ readData returns an \code{\link{EditIn.data}} object which consists of
 }
 }
 \references{
-Hang J. Kim, Lawrence H. Cox, Alan F. Karr, Jerome P. Reiter and Quanli Wang (2015). "Simultaneous Edit-Imputation for Continuous Microdata", Journal of the American Statistical Association, DOI: 10.1080/01621459.2015.1040881, forthcoming.	\cr\cr
+Hang J. Kim, Lawrence H. Cox, Alan F. Karr, Jerome P. Reiter and Quanli Wang (2015). "Simultaneous Edit-Imputation for Continuous Microdata", Journal of the American Statistical Association, DOI: 10.1080/01621459.2015.1040881.	\cr\cr
 Edwin de Jonge and Mark van der Loo (2013). editrules: R package for parsing, applying, and
   manipulating data cleaning rules. R package version 2.7.2. http://CRAN.R-project.org/package=editrules
 }

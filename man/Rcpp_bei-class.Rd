@@ -47,7 +47,7 @@ Class \code{"\linkS4class{C++Object}"}, directly.
 Rcpp_bei objects should be created with \code{\link{createModel}}. Please see the example in the demo folder for more detailed explanation. 
 }
 \references{
-Hang J. Kim, Lawrence H. Cox, Alan F. Karr, Jerome P. Reiter and Quanli Wang (2015). "Simultaneous Edit-Imputation for Continuous Microdata", Journal of the American Statistical Association, DOI: 10.1080/01621459.2015.1040881, forthcoming.
+Hang J. Kim, Lawrence H. Cox, Alan F. Karr, Jerome P. Reiter and Quanli Wang (2015). "Simultaneous Edit-Imputation for Continuous Microdata", Journal of the American Statistical Association, DOI: 10.1080/01621459.2015.1040881.
 }
 
 \examples{

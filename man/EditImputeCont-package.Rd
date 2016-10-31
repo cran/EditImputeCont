@@ -21,7 +21,7 @@ Quanli Wang, Hang J. Kim, Jerome P. Reiter, Lawrence H. Cox and Alan F. Karr
 Maintainer: Quanli Wang <quanli@stat.duke.edu> and Hang J. Kim <hangkim0@gmail.com>
 }
 \references{
-Hang J. Kim, Lawrence H. Cox, Alan F. Karr, Jerome P. Reiter and Quanli Wang (2015). "Simultaneous Edit-Imputation for Continuous Microdata", Journal of the American Statistical Association, DOI: 10.1080/01621459.2015.1040881, forthcoming.
+Hang J. Kim, Lawrence H. Cox, Alan F. Karr, Jerome P. Reiter and Quanli Wang (2015). "Simultaneous Edit-Imputation for Continuous Microdata", Journal of the American Statistical Association, DOI: 10.1080/01621459.2015.1040881.
 }
 \seealso{\code{\link{readData}}, \code{\link{createModel}}, \code{\link{multipleEI}}} 
 
