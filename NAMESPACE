@@ -1,6 +1,7 @@
 useDynLib(EditImputeCont)
 exportPattern("^[[:alpha:]]+")
 import(Rcpp)
+import(igraph)
 importFrom(editrules,as.editmatrix)
 importFrom(methods,is)
 importFrom("graphics", "par", "plot", "points")

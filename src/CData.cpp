@@ -72,7 +72,7 @@ void CData::SetData(Matrix &X_, Matrix &Edit_, Matrix &LogB_, int n_blanceedit) 
   
   D_Observed = X_;
   
-  n_tau = pow(2,n_var)-2;
+  n_tau = ipow(2,n_var)-2;
 }
 
 // Commented on 05/21/2015
@@ -260,7 +260,7 @@ bool CData::ReadDimInfo() {
   fscanf(file_import, "%f", &seed_no); 
   fscanf(file_import, "%f", &epsilon);
   fclose(file_import);
-  n_tau = pow(2,n_var)-2;
+  n_tau = ipow(2,n_var)-2;
   return true;
 }
 
@@ -612,4 +612,14 @@ int CData::count_Draw_find_s(Matrix &S) {
     }
   }
   return count;
+}
+int CData::ipow(int base, int exp) {
+  int result = 1;
+  while (exp) {
+    if (exp & 1)
+      result *= base;
+    exp >>= 1;
+    base *= base;
+  }
+  return result;
 }

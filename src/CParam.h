@@ -42,6 +42,7 @@ public:
   
   ColumnVector z_in;
   ColumnVector n_z; 
+  ColumnVector n_z_in; // Ver 1.0.3
   
   Matrix S_Mat;
   

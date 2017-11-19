@@ -44,6 +44,7 @@ class CData {
     
     void init();
     // void init(string folder);	// Commented on 05/21/2015
+    int ipow(int base, int exp);
     
     string fn_makefilename(string folder, string file);
     bool InitialRecordValid();

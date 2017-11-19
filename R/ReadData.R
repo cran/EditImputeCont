@@ -1,8 +1,12 @@
 readData <- function( Y.original, ratio=NULL, range=NULL, balance=NULL, eps.bal=0.6 ){
-	
+  
 	if (is.null(Y.original)){
 		stop("Y.original is NULL")
 	}
+  if (!is.data.frame(Y.original)){ # Added in Ver 1.2.0
+    Y.original = as.data.frame(Y.original)
+  }
+  
 	D_EditIn_checked = .Check_D_EditIn(Y.original)
 		
 	var_names = dimnames(D_EditIn_checked)[[2]] ; n_var = dim(D_EditIn_checked)[[2]]

@@ -52,7 +52,10 @@ void CParam::iterate(int iter, CData &Data, CFeasibilityMap &FM, CHyperParam &hy
   }
   //clock_t start = clock(), diff;
 
+  // if ( msg_level >= 2 ) cout << "iter=" << iter << endl ; // Ver 1.1.0
+    
   // S1. // vector_r
+  // if ( msg_level >= 2 ) cout << "S1" << endl ; // Ver 1.1.0
   S1(iter, randUnif, Data, FM, n_simul);
   /*
   diff = clock() - start;
@@ -63,16 +66,25 @@ void CParam::iterate(int iter, CData &Data, CFeasibilityMap &FM, CHyperParam &hy
   */
 
   // S2-add. // Y_in | S_i for sum(s_i) >= 2
+  // if ( msg_level >= 2 ) cout << "S2_add" << endl ; // Ver 1.1.0
   S2_add(randUnif,Data);
 
+  // if ( msg_level >= 2 ) cout << "S3_Z_in" << endl ; // Ver 1.1.0
   S3_Z_in(Data);
   
+  // if ( msg_level >= 2 ) cout << "S4_Z_out" << endl ; // Ver 1.1.0
   S4_Z_out(Data);
 
+  // if ( msg_level >= 2 ) cout << "S5_MuSigma" << endl ; // Ver 1.1.0
   S5_MuSigma(Data, hyper.f_Sigma,hyper.h_Mu);
   
+  // if ( msg_level >= 2 ) cout << "S6_pi" << endl ; // Ver 1.1.0
   S6_pi();
+  
+  // if ( msg_level >= 2 ) cout << "S7_alpha" << endl ; // Ver 1.1.0
   S7_alpha(hyper.a_alpha, hyper.b_alpha);
+  
+  // if ( msg_level >= 2 ) cout << "S8_Phi" << endl ; // Ver 1.1.0
   S8_Phi(hyper.f_Sigma, hyper.a_Phi, hyper.b_Phi);
   
 }
@@ -85,6 +97,8 @@ void CParam::initizalize(CData &Data, int nComp, CFeasibilityMap &FM, Uniform &r
   n_var_independent = n_var - Data.n_balance_edit;
   K = nComp;
   n_sample = Data.n_sample;
+  
+  n_z_in = ColumnVector(K); n_z_in = 0 ; // Ver 1.1.0
 
   alpha = 1.0 ;
   Phi = IdentityMatrix(n_var_independent) * 5.0;
@@ -100,7 +114,8 @@ void CParam::initizalize(CData &Data, int nComp, CFeasibilityMap &FM, Uniform &r
   Sigma_k_inv_ll = Matrix(K,n_var_independent);  Sigma_k_inv_ll=0.0;
   X_bar= Matrix(n_var_independent,K); X_bar = 0.0 ;
   CalculateInitProbA(Data);
-}
+  
+} // CParam::initizalize
 
 void CParam::init_pi() {
   nu_short = ColumnVector(K - 1);
@@ -172,37 +187,13 @@ void CParam::init_Y_in(CData &Data) {
   Data.UpdateCompactMatrix(Y_in_compact,Y_in);
 }
 
-void CParam::S6_pi() {
-  double Sum_n_m = n_z.sum();
-  for (int k=1; k<=(K-1); k++) {
-    ColumnVector nu_short_q = nu_short;
-    double n_z_k = n_z(k) ;
-    double one_tilde = 1.0 + n_z_k ;
-    Sum_n_m = Sum_n_m - n_z_k ;         // start from Sum_n_m - n_z_1 when k=1
-    // ->  Sum_n_m - sum(n_z_1 + n_z_2) when k=2 -> ...
-    // Sum_n_m - sum(n_z_1 + ... + n_z_k)) i.e. sum_{g=k+1}^K n_z_g
-    double alpha_tilde = alpha + Sum_n_m ;
-
-    nu_short_q(k) = rbeta_fn( one_tilde, alpha_tilde );
-
-    double Sum_logOneMinusVg = 0.0 ;
-    for (int m=1; m<=(K-1); m++) {
-      double nu_k_q = nu_short_q(m) ;
-      logpi(m) = log(nu_k_q) + Sum_logOneMinusVg ;
-      pi(m) = exp( logpi(m) ) ;
-
-      double one_minus_V = ( 1.0 - nu_short_q(m) ) ;
-      Sum_logOneMinusVg = Sum_logOneMinusVg + log(one_minus_V) ;
-    }
-    logpi(K) = Sum_logOneMinusVg ;
-    pi(K) = exp(Sum_logOneMinusVg) ;
-
-    nu_short = nu_short_q;
-  }
-}
+// Ver 1.1.0 moves "void CParam::S6_pi()" below // // Ver 1.1.0
 
 void CParam::init_z_in() {
+  
   z_in = ColumnVector(n_sample) ;
+  n_z_in = 0 ; // Ver 1.1.0
+  
   for (int i_sample=1; i_sample<=n_sample; i_sample++) {
     // calculate pi_tilde_in
     ColumnVector logN_unnorm(K);
@@ -220,8 +211,10 @@ void CParam::init_z_in() {
     ColumnVector pi_tilde_in = (1.0/pi_tilde_in_unnorm.sum()) * pi_tilde_in_unnorm ;
 
     z_in(i_sample) = rdiscrete_fn(pi_tilde_in);
+    n_z_in(z_in(i_sample)) = n_z_in(z_in(i_sample)) + 1 ; // Ver 1.1.0
   }
-}
+  
+} // void CParam::init_z_in()
 
 void CParam::init_logUnif_y_tilde(CData &Data,CFeasibilityMap &FM, Uniform &randUnif, int n_simul) {
   logUnif_y_tilde = ColumnVector(Data.n_faulty);
@@ -475,7 +468,11 @@ void CParam::S2_add(Uniform &randUnif,CData &Data) {
 }
 
 void CParam::S3_Z_in(CData &Data) {
+  
   Data.UpdateCompactMatrix(Y_in_compact,Y_in);
+  
+  n_z_in = 0 ; // Ver 1.1.0
+  
   for (int i_sample=1; i_sample<=n_sample; i_sample++) {
     // calculate pi_tilde_in
     ColumnVector logN_unnorm(K);
@@ -494,13 +491,17 @@ void CParam::S3_Z_in(CData &Data) {
     ColumnVector pi_tilde_in = (1.0/pi_tilde_in_unnorm.sum()) * pi_tilde_in_unnorm ;
 
     z_in(i_sample) = rdiscrete_fn( pi_tilde_in );
-  }
-}
+    n_z_in(z_in(i_sample)) = n_z_in(z_in(i_sample)) + 1 ; // Ver 1.1.0
+  } // for
+  
+} // void CParam::S3_Z_in
 
 void CParam::S4_Z_out(CData &Data) {
   int count_out = 0,   count_in = 0;
 
-  ColumnVector z_out_large(toolarge_nout);
+  ColumnVector z_out_large(toolarge_nout) ;
+  ColumnVector n_z_out_large(K) ; n_z_out_large = 0 ; // Ver 1.1.0
+  
   Matrix Y_out_compact_large(toolarge_nout,n_var_independent);
   Matrix X_aux(n_sample,n_var);
 
@@ -531,9 +532,12 @@ void CParam::S4_Z_out(CData &Data) {
       if (Data.PassEdits(x_full_i)) {
         X_aux.row(++count_in) = x_full_i.t();
       } else {
+        if ( n_z_out_large(k) < n_z_in(k) ){ // Ver 1.1.0
         Y_out_compact_large.row(++count_out) = y_compact_i.t();
         z_out_large(count_out)=k;
-      }
+        n_z_out_large(k) = n_z_out_large(k) + 1 ; 
+        }
+      } // if ... else ...
 
     } // if (check_infinity==0) : ADDED by HANG
 
@@ -618,6 +622,35 @@ void CParam::S5_MuSigma(CData &Data, double f_Sigma,double h_Mu) {
   delete [] Counts;
 }
 
+void CParam::S6_pi() {
+  double Sum_n_m = n_z.sum();
+  for (int k=1; k<=(K-1); k++) {
+    ColumnVector nu_short_q = nu_short;
+    double n_z_k = n_z(k) ;
+    double one_tilde = 1.0 + n_z_k ;
+    Sum_n_m = Sum_n_m - n_z_k ;         // start from Sum_n_m - n_z_1 when k=1
+    // ->  Sum_n_m - sum(n_z_1 + n_z_2) when k=2 -> ...
+    // Sum_n_m - sum(n_z_1 + ... + n_z_k)) i.e. sum_{g=k+1}^K n_z_g
+    double alpha_tilde = alpha + Sum_n_m ;
+    
+    nu_short_q(k) = rbeta_fn( one_tilde, alpha_tilde );
+    
+    double Sum_logOneMinusVg = 0.0 ;
+    for (int m=1; m<=(K-1); m++) {
+      double nu_k_q = nu_short_q(m) ;
+      logpi(m) = log(nu_k_q) + Sum_logOneMinusVg ;
+      pi(m) = exp( logpi(m) ) ;
+      
+      double one_minus_V = ( 1.0 - nu_short_q(m) ) ;
+      Sum_logOneMinusVg = Sum_logOneMinusVg + log(one_minus_V) ;
+    }
+    logpi(K) = Sum_logOneMinusVg ;
+    pi(K) = exp(Sum_logOneMinusVg) ;
+    
+    nu_short = nu_short_q;
+  }
+}
+
 void CParam::S7_alpha(double a_alpha, double b_alpha) {
   double a_alpha_tilde = a_alpha + K - 1.0 ;
   double b_alpha_tilde = b_alpha - logpi(K) ;
@@ -667,7 +700,8 @@ void CParam::CalculateInitProbA(CData &Data) {
 }
 
 ColumnVector CParam::GetComponentCounts() {
-  ColumnVector n_z_in(K) ; n_z_in = 0 ;
+  // ColumnVector n_z_in(K) ; // Ver 1.1.0
+  n_z_in = 0 ; // Ver 1.1.0
   for (int i=1; i<=n_sample ; i++ ){
     n_z_in(z_in(i))++;
   }
