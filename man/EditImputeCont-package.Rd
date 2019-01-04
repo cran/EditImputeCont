@@ -36,7 +36,7 @@ data1 = readData(Y.original=SimpleEx$D.obs, ratio=SimpleEx$Ratio.edit,
 	range=NULL, balance=SimpleEx$Balance.edit)
 
 ## create and initialize the model with 15 DP mixture components
-model1 = createModel(data.obj=data1, K=15)
+# model1 = createModel(data.obj=data1, K=15)
 
 ## Run an iteration of MCMC
 

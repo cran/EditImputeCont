@@ -111,7 +111,7 @@ CBE::CBE(Rcpp::NumericMatrix X_, Rcpp::NumericMatrix Edit_, Rcpp::NumericMatrix 
   
   int n_simul = 100;  // To calculate logUnif_case2
   FM.Simulate_logUnif_case2(n_simul, *randUnif, Data);
-  Param.initizalize(Data,50);
+  Param.initialize(Data,50);
   cout << "Param.Prob_A = " << Param.Prob_A << endl;
   for (int iter=1; iter<=55; iter++) {
      cout<< "iter: " <<  iter << endl;
@@ -195,7 +195,7 @@ void CBE::SetK(int ncomp) {
   } else {
     if (Param.K != ncomp) {
 	  Rprintf( "re-initilizing number of components to %d\n", ncomp);
-      Param.initizalize(Data,ncomp,FM, *randUnif,100);
+      Param.initialize(Data,ncomp,FM, *randUnif,100);
     }
   }
 }

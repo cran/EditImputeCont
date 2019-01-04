@@ -51,7 +51,7 @@ public:
   double Prob_A;
   
   void iterate(int iter, CData &Data, CFeasibilityMap &FM, CHyperParam &hyper, Uniform &randUnif, int n_simul);
-  void initizalize(CData &Data, int nComp,CFeasibilityMap &FM,Uniform &randUnif, int n_simul);
+  void initialize(CData &Data, int nComp,CFeasibilityMap &FM,Uniform &randUnif, int n_simul);
   
   ColumnVector GetComponentCounts();
   int msg_level; //0 errors only; 1: errors and warnings; 2: errors, warnings and information

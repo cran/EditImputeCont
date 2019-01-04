@@ -48,7 +48,7 @@ void CParam::iterate(int iter, CData &Data, CFeasibilityMap &FM, CHyperParam &hy
 
   if (K < 0) { //the K has been changed and delayed re-initilization is needed
     //cout << "Initilizing parameters" << endl;
-    initizalize(Data,-K,FM,randUnif,n_simul);
+    initialize(Data,-K,FM,randUnif,n_simul);
   }
   //clock_t start = clock(), diff;
 
@@ -89,7 +89,7 @@ void CParam::iterate(int iter, CData &Data, CFeasibilityMap &FM, CHyperParam &hy
   
 }
 
-void CParam::initizalize(CData &Data, int nComp, CFeasibilityMap &FM, Uniform &randUnif, int n_simul){
+void CParam::initialize(CData &Data, int nComp, CFeasibilityMap &FM, Uniform &randUnif, int n_simul){
   // Set the minimum value of (no. of correct records)/(no. of all records)
   toolarge_nout = (1-min_Prob_A)/min_Prob_A * Data.n_sample ;
 
@@ -115,7 +115,7 @@ void CParam::initizalize(CData &Data, int nComp, CFeasibilityMap &FM, Uniform &r
   X_bar= Matrix(n_var_independent,K); X_bar = 0.0 ;
   CalculateInitProbA(Data);
   
-} // CParam::initizalize
+} // CParam::initialize
 
 void CParam::init_pi() {
   nu_short = ColumnVector(K - 1);

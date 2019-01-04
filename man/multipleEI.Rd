@@ -28,7 +28,7 @@ The total number of MCMC iterations is (\code{n.burnin} + \code{m} * \code{int.b
 \examples{
 data(SimpleEx)
 data1 = readData(SimpleEx$D.obs, SimpleEx$Ratio.edit, NULL, SimpleEx$Balance.edit)
-model1 = createModel(data1, 15)
+# model1 = createModel(data1, 15)
 
 ## get 3 edit-imputed data from MCMC by storing every 100 iterations after 50 burn-in
 

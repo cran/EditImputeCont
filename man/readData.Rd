@@ -64,7 +64,7 @@ Balance1 = read.table("Demo_Balance_edit.txt", header = FALSE)
 data1 = readData(Y.original=D_obs1, ratio=Ratio1, range=Range1, 
 balance=Balance1, eps.bal=0.6)
 
-print(data1$Edit.editmatrix)
+# print(data1$Edit.editmatrix)
 # plot(data1$Edit.editmatrix)	  ## function of 'editrules' package
 
 ### option 2. Using the syntax of R package 'editrules' ###
@@ -87,7 +87,7 @@ Balance2 <- editmatrix(c(
 
 data2 = readData(D_obs2, Ratio2, Range2, Balance2)
 
-print(data2$Edit.editmatrix)
+# print(data2$Edit.editmatrix)
   # Note: data2 is equivalent to data1
 # plot(data2$Edit.editmatrix)	  ## function of 'editrules' package
 }

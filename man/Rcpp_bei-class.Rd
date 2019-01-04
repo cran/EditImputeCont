@@ -58,7 +58,7 @@ data1 = readData(SimpleEx$D.obs, SimpleEx$Ratio.edit, NULL,
   SimpleEx$Balance.edit)
 
 ## create and initialize the model
-model1 = createModel(data1, K=15)
+# model1 = createModel(data1, K=15)
 
 ### run 10 iterations
 # model1$Run(10)
