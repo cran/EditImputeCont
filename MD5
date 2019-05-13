@@ -1,4 +1,4 @@
-3ebe7893617bdfef8a36fd5a77e00793 *DESCRIPTION
+a3caeaa457274295d22c67464cca8059 *DESCRIPTION
 e0ae1ae98c7c57814effc55e45593204 *NAMESPACE
 2d178ec343634c64fab6e0060cafb9a4 *R/Check_D_EditIn.R
 2cadef701fa623373ce38cf0dc850ef8 *R/LoadModule.R
@@ -10,7 +10,7 @@ bd6998c76edd0ffaa84271098945b396 *R/RunningMCMC.R
 666983541b638ea216e4c0095115d618 *data/SimpleEx.RData
 6ab41185a63fdb0bcc211d828c016f68 *demo/00Index
 c984b1ebdecfd587183b9f646822974a *demo/example.R
-442788bf518cfbfe2fe77acd1346137c *man/EditImputeCont-package.Rd
+dcac09b07a33510d57b93d7560094cb2 *man/EditImputeCont-package.Rd
 b7d2513c0533b14e71e0eb36441b4eb2 *man/NestedEx.Rd
 18b3e33a960bfd392227a55bafba1b16 *man/Rcpp_bei-class.Rd
 0ab2c1af71b6404aafe5f0894ccd5369 *man/SimpleEx.Rd
@@ -20,7 +20,7 @@ d9f03800c32e7a242db6211bfe459892 *man/makeDemoTxt.Rd
 48205812a43dc5bcba266f305074391e *man/multipleEI.Rd
 bfcffdf6c9aea09ac30c8d7c2ec46728 *man/readData.Rd
 a54957970313fc6afbb2b907a73be7dc *man/scatterPlot.Rd
-e07080ea40a8429b78b67411bd92c888 *src/CBE.cpp
+b72ce6994cca0813e54ed12f63060c8d *src/CBE.cpp
 3bd5e61c8842aca1965c6c38a37efde6 *src/CBE.h
 5f3d2de196de55417367757b3bffcb98 *src/CData.cpp
 b99458de238a03a8e875f8c99b2a8bed *src/CData.h
@@ -126,7 +126,6 @@ df0097e4bf39b4d996ea74f6126cfda5 *src/newmat4.cpp
 0583f66382d69483773645fa7208ed0e *src/newmat6.cpp
 c6230b841f3850c0f4d6f04db80fd943 *src/newmat7.cpp
 f5cf174b7bb71b562124725edb23fb03 *src/newmat8.cpp
-260876e7dd4ced1420dd7bd242024388 *src/newmat9.cpp
 4f762e699303b1fa248327de04d73fb3 *src/newmatap.h
 540a120065b6419847a1f17f27c1e449 *src/newmatex.cpp
 ebfc5a3e2477e4453ace3a6a9792e952 *src/newmatio.h
@@ -141,10 +140,7 @@ c1b0064fec9c2810c64c847b7e3ca837 *src/newran.h
 249bfefcd4e815841d5b5869b2cd588b *src/simpstr.cpp
 f5c14fb77194a4f1487ba428a23c418d *src/simpstr.h
 a4f025396e81debdc0a00d34e9d4c151 *src/sort.cpp
-e465febb35e71840ba08c5ecf621e1e7 *src/sparselib.c
-4bae4e6a2367d3b9ef07b7dae5e608ba *src/sparselib.h
 ca2a179cb134d44ee49af4bd2262bb7f *src/submat.cpp
 1a5780de37d51a7e23b461c2a54a50e2 *src/svd.cpp
-ca9689ad85eac09f9bdb3f3db52222d0 *src/ufortify.h
 34e3ce9f30d0f6d5f6e1e30f4702fcba *src/yacc_read.c
 6f68b3546f73d4a8e71632bb4e2b6950 *src/yacc_read.h

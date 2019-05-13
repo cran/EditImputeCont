@@ -1,3 +1,14 @@
+/* Version updates
+
+EditImputCont_1.1.2 
+- remove sparselib.c and sparselib.c
+
+EditImputCont_1.1.3
+- remove unncessary libraries from lp_solve, Newmat and Newran
+	 newmat9.cpp, sparselib.c, sparselib.h, ufortify.h
+*/
+
+
 #include "CHeader.h"  
 #include <Rcpp.h>
 #include <R_ext/Utils.h>
