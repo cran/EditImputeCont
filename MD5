@@ -1,4 +1,4 @@
-a3caeaa457274295d22c67464cca8059 *DESCRIPTION
+e3bf534382de7435c07b4286e296dba7 *DESCRIPTION
 e0ae1ae98c7c57814effc55e45593204 *NAMESPACE
 2d178ec343634c64fab6e0060cafb9a4 *R/Check_D_EditIn.R
 2cadef701fa623373ce38cf0dc850ef8 *R/LoadModule.R
@@ -62,7 +62,7 @@ ce0a0d53e631a97b88fadc584331913c *src/lp_Hash.h
 fa869ca21a3fbb48dbf789ad6cb63a51 *src/lp_LUSOL.h
 5d59a4b965236021be19b4f484a93db8 *src/lp_MDO.c
 07bc5ba751db2629a38b7932cc70cbe4 *src/lp_MDO.h
-b1f01fa37acfc3eb3f5da2d879c28eac *src/lp_MPS.c
+9c1a898bdd396e35577de1cb9e298d36 *src/lp_MPS.c
 7871ebb358485f8e8c3ef9443980d497 *src/lp_MPS.h
 a38903d6d76b4facd163017c55f89389 *src/lp_SOS.c
 70c13990a39ffce5c0222bf58ea8d0f3 *src/lp_SOS.h

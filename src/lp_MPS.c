@@ -1130,7 +1130,8 @@ static void number(char *str,REAL value)
       *(--_str)=' ';
      }
     }
-  strncpy(str,_str,12);
+  // strncpy(str,_str,12);
+		memcpy(str,_str,12);
  }
 
 static char numberbuffer[15];
