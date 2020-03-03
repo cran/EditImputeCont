@@ -300,7 +300,7 @@ int readHB_header(FILE* in_file, char* Title, char* Key, char* Type,
     char line[BUFSIZ];
 
 /*  First line:   */
-    fgets(line, BUFSIZ, in_file);
+    // fgets(line, BUFSIZ, in_file);  	// Commented on 02/08/2020
     if ( sscanf(line,"%*s") < 0 )
         IOHBTerminate("iohb.c: Null (or blank) first line of HB file.\n");
     (void) sscanf(line, "%72c%8[^\n]", Title, Key);
@@ -308,7 +308,7 @@ int readHB_header(FILE* in_file, char* Title, char* Key, char* Type,
     *(Title+72) = '\0';
 
 /*  Second line:  */
-    fgets(line, BUFSIZ, in_file);
+    // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
     if ( sscanf(line,"%*s") < 0 )
         IOHBTerminate("iohb.c: Null (or blank) second line of HB file.\n");
     if ( sscanf(line,"%i",&Totcrd) != 1) Totcrd = 0;
@@ -318,7 +318,7 @@ int readHB_header(FILE* in_file, char* Title, char* Key, char* Type,
     if ( sscanf(line,"%*i%*i%*i%*i%i",Rhscrd) != 1) *Rhscrd = 0;
 
 /*  Third line:   */
-    fgets(line, BUFSIZ, in_file);
+    // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
     if ( sscanf(line,"%*s") < 0 )
         IOHBTerminate("iohb.c: Null (or blank) third line of HB file.\n");
     if ( sscanf(line, "%3c", Type) != 1)
@@ -330,7 +330,7 @@ int readHB_header(FILE* in_file, char* Title, char* Key, char* Type,
     if ( sscanf(line,"%*3c%*i%*i%*i%i",&Neltvl) != 1) Neltvl = 0 ;
 
 /*  Fourth line:  */
-    fgets(line, BUFSIZ, in_file);
+    // fgets(line, BUFSIZ, in_file);				// Commented on 02/08/2020
     if ( sscanf(line,"%*s") < 0 )
         IOHBTerminate("iohb.c: Null (or blank) fourth line of HB file.\n");
     if ( sscanf(line, "%16c",Ptrfmt) != 1)
@@ -348,7 +348,7 @@ int readHB_header(FILE* in_file, char* Title, char* Key, char* Type,
 /*  (Optional) Fifth line: */
     if (*Rhscrd != 0 )
     {
-       fgets(line, BUFSIZ, in_file);
+       // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
        if ( sscanf(line,"%*s") < 0 )
            IOHBTerminate("iohb.c: Null (or blank) fifth line of HB file.\n");
        if ( sscanf(line, "%3c", Rhstype) != 1)
@@ -421,7 +421,7 @@ int readHB_mat_double(const char* filename, int colptr[], int rowind[],
     count=0;
     for (i=0;i<Ptrcrd;i++)
     {
-       fgets(line, BUFSIZ, in_file);
+       // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
        if ( sscanf(line,"%*s") < 0 )
          IOHBTerminate("iohb.c: Null (or blank) line in pointer data region of HB file.\n");
        col =  0;
@@ -444,7 +444,7 @@ int readHB_mat_double(const char* filename, int colptr[], int rowind[],
     count = 0;
     for (i=0;i<Indcrd;i++)
     {
-       fgets(line, BUFSIZ, in_file);
+       // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
        if ( sscanf(line,"%*s") < 0 )
          IOHBTerminate("iohb.c: Null (or blank) line in index data region of HB file.\n");
        col =  0;
@@ -473,7 +473,7 @@ int readHB_mat_double(const char* filename, int colptr[], int rowind[],
     count = 0;
     for (i=0;i<Valcrd;i++)
     {
-       fgets(line, BUFSIZ, in_file);
+       // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
        if ( sscanf(line,"%*s") < 0 )
          IOHBTerminate("iohb.c: Null (or blank) line in value data region of HB file.\n");
        if (Valflag == 'D')  {
@@ -624,7 +624,7 @@ int readHB_aux_double(const char* filename, const char AuxType, double b[])
     n = Ptrcrd + Indcrd + Valcrd;
 
     for (i = 0; i < n; i++)
-      fgets(line, BUFSIZ, in_file);
+      // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
 
 /*  start  - number of initial aux vector entries to skip   */
 /*           to reach first  vector requested               */
@@ -635,14 +635,14 @@ int readHB_aux_double(const char* filename, const char AuxType, double b[])
     else start = (nvecs-1)*Nentries;
     stride = (nvecs-1)*Nentries;
 
-    fgets(line, BUFSIZ, in_file);
+    // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
     linel= strchr(line,'\n')-line;
     col = 0;
 /*  Skip to initial offset */
 
     for (i=0;i<start;i++) {
        if ( col >=  ( maxcol<linel?maxcol:linel ) ) {
-           fgets(line, BUFSIZ, in_file);
+           // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
            linel= strchr(line,'\n')-line;
            col = 0;
        }
@@ -662,7 +662,7 @@ int readHB_aux_double(const char* filename, const char AuxType, double b[])
 
     for (i=0;i<Nentries;i++) {
        if ( col >= ( maxcol<linel?maxcol:linel ) ) {
-           fgets(line, BUFSIZ, in_file);
+           // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
            linel= strchr(line,'\n')-line;
            if (Rhsflag == 'D')  {
               while( strchr(line,'D') ) *strchr(line,'D') = 'E';
@@ -690,7 +690,7 @@ int readHB_aux_double(const char* filename, const char AuxType, double b[])
 
     for (i=0;i<stride;i++) {
        if ( col >= ( maxcol<linel?maxcol:linel ) ) {
-           fgets(line, BUFSIZ, in_file);
+           // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
            linel= strchr(line,'\n')-line;
            col = 0;
        }
@@ -746,8 +746,8 @@ int writeHB_mat_double(const char* filename, int M, int N,
 /*            Duff, et al.,  ACM TOMS Vol.15, No.1, March 1989              */
 /*                                                                          */
 /****************************************************************************/
-    FILE *out_file;
-    int i,j,entry,offset,acount,linemod;
+    // FILE *out_file;
+    // int i,j,entry,offset,acount,linemod;
     int totcrd, ptrcrd, indcrd, valcrd, rhscrd;
     int nvalentries, nrhsentries;
     int Ptrperline, Ptrwidth, Indperline, Indwidth;
@@ -765,12 +765,12 @@ int writeHB_mat_double(const char* filename, int M, int N,
          nrhsentries = M;
     }
 
-    if ( filename != NULL ) {
-       if ( (out_file = fopen( filename, "w")) == NULL ) {
-         REprintf("Error: Cannot open file: %s\n",filename);
-         return 0;
-       }
-    } /* else out_file = stdout; */
+    // if ( filename != NULL ) {
+    //    if ( (out_file = fopen( filename, "w")) == NULL ) {
+    //      REprintf("Error: Cannot open file: %s\n",filename);
+    //      return 0;
+    //    }
+    // } /* else out_file = stdout; */
 
     if ( Ptrfmt == NULL ) Ptrfmt = "(8I10)";
     ParseIfmt(Ptrfmt,&Ptrperline,&Ptrwidth);
@@ -814,100 +814,100 @@ int writeHB_mat_double(const char* filename, int M, int N,
     totcrd = 4+ptrcrd+indcrd+valcrd+rhscrd;
 
 
-/*  Print header information:  */
-
-    fprintf(out_file,"%-72s%-8s\n%14d%14d%14d%14d%14d\n",Title, Key, totcrd,
-            ptrcrd, indcrd, valcrd, rhscrd);
-    fprintf(out_file,"%3s%11s%14d%14d%14d\n",Type,"          ", M, N, nz);
-    fprintf(out_file,"%-16s%-16s%-20s", Ptrfmt, Indfmt, Valfmt);
-    if ( Nrhs != 0 ) {
-/*     Print Rhsfmt on fourth line and                                    */
-/*           optional fifth header line for auxillary vector information: */
-       fprintf(out_file,"%-20s\n%-14s%d\n",Rhsfmt,Rhstype,Nrhs);
-    } else fprintf(out_file,"\n");
-
-    offset = 1-_SP_base;  /* if base 0 storage is declared (via macro definition), */
-                          /* then storage entries are offset by 1                  */
-
-/*  Print column pointers:   */
-    for (i=0;i<N+1;i++)
-    {
-       entry = colptr[i]+offset;
-       fprintf(out_file,pformat,entry);
-       if ( (i+1)%Ptrperline == 0 ) fprintf(out_file,"\n");
-    }
-
-   if ( (N+1) % Ptrperline != 0 ) fprintf(out_file,"\n");
-
-/*  Print row indices:       */
-    for (i=0;i<nz;i++)
-    {
-       entry = rowind[i]+offset;
-       fprintf(out_file,iformat,entry);
-       if ( (i+1)%Indperline == 0 ) fprintf(out_file,"\n");
-    }
-
-   if ( nz % Indperline != 0 ) fprintf(out_file,"\n");
-
-/*  Print values:            */
-
-    if ( Type[0] != 'P' ) {          /* Skip if pattern only  */
-
-    for (i=0;i<nvalentries;i++)
-    {
-       fprintf(out_file,vformat,val[i]);
-       if ( (i+1)%Valperline == 0 ) fprintf(out_file,"\n");
-    }
-
-    if ( nvalentries % Valperline != 0 ) fprintf(out_file,"\n");
-
-/*  If available,  print right hand sides,
-           guess vectors and exact solution vectors:  */
-    acount = 1;
-    linemod = 0;
-    if ( Nrhs > 0 ) {
-       for (i=0;i<Nrhs;i++)
-       {
-          for ( j=0;j<nrhsentries;j++ ) {
-            fprintf(out_file,rformat,rhs[j]);
-            if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
-          }
-          if ( acount%Rhsperline != linemod ) {
-            fprintf(out_file,"\n");
-            linemod = (acount-1)%Rhsperline;
-          }
-          rhs += nrhsentries;
-          if ( Rhstype[1] == 'G' ) {
-            for ( j=0;j<nrhsentries;j++ ) {
-              fprintf(out_file,rformat,guess[j]);
-              if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
-            }
-            if ( acount%Rhsperline != linemod ) {
-              fprintf(out_file,"\n");
-              linemod = (acount-1)%Rhsperline;
-            }
-            guess += nrhsentries;
-          }
-          if ( Rhstype[2] == 'X' ) {
-            for ( j=0;j<nrhsentries;j++ ) {
-              fprintf(out_file,rformat,exact[j]);
-              if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
-            }
-            if ( acount%Rhsperline != linemod ) {
-              fprintf(out_file,"\n");
-              linemod = (acount-1)%Rhsperline;
-            }
-            exact += nrhsentries;
-          }
-       }
-    }
-
-    }
-
-    if ( fclose(out_file) != 0){
-      REprintf("Error closing file in writeHB_mat_double().\n");
-      return 0;
-    } else return 1;
+// /*  Print header information:  */
+//
+//     // fprintf(out_file,"%-72s%-8s\n%14d%14d%14d%14d%14d\n",Title, Key, totcrd,
+//  //            ptrcrd, indcrd, valcrd, rhscrd);
+//     // fprintf(out_file,"%3s%11s%14d%14d%14d\n",Type,"          ", M, N, nz);
+//     // fprintf(out_file,"%-16s%-16s%-20s", Ptrfmt, Indfmt, Valfmt);
+//     if ( Nrhs != 0 ) {
+// /*     Print Rhsfmt on fourth line and                                    */
+// /*           optional fifth header line for auxillary vector information: */
+//        fprintf(out_file,"%-20s\n%-14s%d\n",Rhsfmt,Rhstype,Nrhs);
+//     } else fprintf(out_file,"\n");
+//
+//     offset = 1-_SP_base;  /* if base 0 storage is declared (via macro definition), */
+//                           /* then storage entries are offset by 1                  */
+//
+// /*  Print column pointers:   */
+//     for (i=0;i<N+1;i++)
+//     {
+//        entry = colptr[i]+offset;
+//        fprintf(out_file,pformat,entry);
+//        if ( (i+1)%Ptrperline == 0 ) fprintf(out_file,"\n");
+//     }
+//
+//    if ( (N+1) % Ptrperline != 0 ) fprintf(out_file,"\n");
+//
+// /*  Print row indices:       */
+//     for (i=0;i<nz;i++)
+//     {
+//        entry = rowind[i]+offset;
+//        fprintf(out_file,iformat,entry);
+//        if ( (i+1)%Indperline == 0 ) fprintf(out_file,"\n");
+//     }
+//
+//    if ( nz % Indperline != 0 ) fprintf(out_file,"\n");
+//
+// /*  Print values:            */
+//
+//     if ( Type[0] != 'P' ) {          /* Skip if pattern only  */
+//
+//     for (i=0;i<nvalentries;i++)
+//     {
+//        fprintf(out_file,vformat,val[i]);
+//        if ( (i+1)%Valperline == 0 ) fprintf(out_file,"\n");
+//     }
+//
+//     if ( nvalentries % Valperline != 0 ) fprintf(out_file,"\n");
+//
+// /*  If available,  print right hand sides,
+//            guess vectors and exact solution vectors:  */
+//     acount = 1;
+//     linemod = 0;
+//     if ( Nrhs > 0 ) {
+//        for (i=0;i<Nrhs;i++)
+//        {
+//           for ( j=0;j<nrhsentries;j++ ) {
+//             fprintf(out_file,rformat,rhs[j]);
+//             if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
+//           }
+//           if ( acount%Rhsperline != linemod ) {
+//             fprintf(out_file,"\n");
+//             linemod = (acount-1)%Rhsperline;
+//           }
+//           rhs += nrhsentries;
+//           if ( Rhstype[1] == 'G' ) {
+//             for ( j=0;j<nrhsentries;j++ ) {
+//               fprintf(out_file,rformat,guess[j]);
+//               if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
+//             }
+//             if ( acount%Rhsperline != linemod ) {
+//               fprintf(out_file,"\n");
+//               linemod = (acount-1)%Rhsperline;
+//             }
+//             guess += nrhsentries;
+//           }
+//           if ( Rhstype[2] == 'X' ) {
+//             for ( j=0;j<nrhsentries;j++ ) {
+//               fprintf(out_file,rformat,exact[j]);
+//               if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
+//             }
+//             if ( acount%Rhsperline != linemod ) {
+//               fprintf(out_file,"\n");
+//               linemod = (acount-1)%Rhsperline;
+//             }
+//             exact += nrhsentries;
+//           }
+//        }
+//     }
+//
+//     }
+    // if ( fclose(out_file) != 0){
+    //   REprintf("Error closing file in writeHB_mat_double().\n");
+    //   return 0;
+    // } else return 1;
+		return 1; 
 
 }
 
@@ -975,7 +975,7 @@ int readHB_mat_char(const char* filename, int colptr[], int rowind[],
     count=0;
     for (i=0;i<Ptrcrd;i++)
     {
-       fgets(line, BUFSIZ, in_file);
+       // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
        if ( sscanf(line,"%*s") < 0 )
          IOHBTerminate("iohb.c: Null (or blank) line in pointer data region of HB file.\n");
        col =  0;
@@ -998,7 +998,7 @@ int readHB_mat_char(const char* filename, int colptr[], int rowind[],
     count = 0;
     for (i=0;i<Indcrd;i++)
     {
-       fgets(line, BUFSIZ, in_file);
+       // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
        if ( sscanf(line,"%*s") < 0 )
          IOHBTerminate("iohb.c: Null (or blank) line in index data region of HB file.\n");
        col =  0;
@@ -1026,7 +1026,7 @@ int readHB_mat_char(const char* filename, int colptr[], int rowind[],
     count = 0;
     for (i=0;i<Valcrd;i++)
     {
-       fgets(line, BUFSIZ, in_file);
+       // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
        if ( sscanf(line,"%*s") < 0 )
          IOHBTerminate("iohb.c: Null (or blank) line in value data region of HB file.\n");
        if (Valflag == 'D') {
@@ -1190,7 +1190,7 @@ int readHB_aux_char(const char* filename, const char AuxType, char b[])
     n = Ptrcrd + Indcrd + Valcrd;
 
     for (i = 0; i < n; i++)
-      fgets(line, BUFSIZ, in_file);
+      // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
 
 /*  start  - number of initial aux vector entries to skip   */
 /*           to reach first  vector requested               */
@@ -1201,7 +1201,7 @@ int readHB_aux_char(const char* filename, const char AuxType, char b[])
     else start = (nvecs-1)*Nentries;
     stride = (nvecs-1)*Nentries;
 
-    fgets(line, BUFSIZ, in_file);
+    // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
     linel= strchr(line,'\n')-line;
     if ( sscanf(line,"%*s") < 0 )
        IOHBTerminate("iohb.c: Null (or blank) line in auxillary vector data region of HB file.\n");
@@ -1211,7 +1211,7 @@ int readHB_aux_char(const char* filename, const char AuxType, char b[])
     for (i=0;i<start;i++) {
        col += Rhswidth;
        if ( col >= ( maxcol<linel?maxcol:linel ) ) {
-           fgets(line, BUFSIZ, in_file);
+           // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
            linel= strchr(line,'\n')-line;
        if ( sscanf(line,"%*s") < 0 )
        IOHBTerminate("iohb.c: Null (or blank) line in auxillary vector data region of HB file.\n");
@@ -1229,7 +1229,7 @@ int readHB_aux_char(const char* filename, const char AuxType, char b[])
 
     for (i=0;i<Nentries;i++) {
        if ( col >= ( maxcol<linel?maxcol:linel ) ) {
-           fgets(line, BUFSIZ, in_file);
+           // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
            linel= strchr(line,'\n')-line;
        if ( sscanf(line,"%*s") < 0 )
        IOHBTerminate("iohb.c: Null (or blank) line in auxillary vector data region of HB file.\n");
@@ -1260,7 +1260,7 @@ int readHB_aux_char(const char* filename, const char AuxType, char b[])
     for (i=0;i<stride;i++) {
        col += Rhswidth;
        if ( col >= ( maxcol<linel?maxcol:linel ) ) {
-           fgets(line, BUFSIZ, in_file);
+           // fgets(line, BUFSIZ, in_file);			// Commented on 02/08/2020
            linel= strchr(line,'\n')-line;
        if ( sscanf(line,"%*s") < 0 )
        IOHBTerminate("iohb.c: Null (or blank) line in auxillary vector data region of HB file.\n");
@@ -1333,16 +1333,16 @@ int writeHB_mat_char(const char* filename, int M, int N,
 /*            Duff, et al.,  ACM TOMS Vol.15, No.1, March 1989              */
 /*                                                                          */
 /****************************************************************************/
-    FILE *out_file;
-    int i,j,acount,linemod,entry,offset;
+    // FILE *out_file;
+    int i,acount,linemod,entry,offset; // j,
     int totcrd, ptrcrd, indcrd, valcrd, rhscrd;
     int nvalentries, nrhsentries;
     int Ptrperline, Ptrwidth, Indperline, Indwidth;
     int Rhsperline, Rhswidth, Rhsprec;
     int Rhsflag;
-    int Valperline, Valwidth, Valprec;
-    int Valflag;           /* Indicates 'E','D', or 'F' float format */
-    char pformat[16],iformat[16],vformat[19],rformat[19];
+    // int Valperline, Valwidth, Valprec;
+    // int Valflag;           /* Indicates 'E','D', or 'F' float format */
+    char pformat[16],iformat[16],rformat[19]; // vformat[19],
 
     if ( Type[0] == 'C' ) {
          nvalentries = 2*nz;
@@ -1352,12 +1352,12 @@ int writeHB_mat_char(const char* filename, int M, int N,
          nrhsentries = M;
     }
 
-    if ( filename != NULL ) {
-       if ( (out_file = fopen( filename, "w")) == NULL ) {
-         REprintf("Error: Cannot open file: %s\n",filename);
-         return 0;
-       }
-    } /* else out_file = stdout; */
+    // if ( filename != NULL ) {
+    //    if ( (out_file = fopen( filename, "w")) == NULL ) {
+    //      REprintf("Error: Cannot open file: %s\n",filename);
+    //      return 0;
+    //    }
+    // } /* else out_file = stdout; */
 
     if ( Ptrfmt == NULL ) Ptrfmt = "(8I10)";
     ParseIfmt(Ptrfmt,&Ptrperline,&Ptrwidth);
@@ -1367,11 +1367,11 @@ int writeHB_mat_char(const char* filename, int M, int N,
     ParseIfmt(Indfmt,&Indperline,&Indwidth);
     sprintf(iformat,"%%%dd",Indwidth);
 
-    if ( Type[0] != 'P' ) {          /* Skip if pattern only  */
-      if ( Valfmt == NULL ) Valfmt = "(4E20.13)";
-      ParseRfmt(Valfmt,&Valperline,&Valwidth,&Valprec,&Valflag);
-      sprintf(vformat,"%%%ds",Valwidth);
-    }
+    // if ( Type[0] != 'P' ) {          /* Skip if pattern only  */
+    //   if ( Valfmt == NULL ) Valfmt = "(4E20.13)";
+    //   ParseRfmt(Valfmt,&Valperline,&Valwidth,&Valprec,&Valflag);
+    //   sprintf(vformat,"%%%ds",Valwidth);
+    // }
 
     ptrcrd = (N+1)/Ptrperline;
     if ( (N+1)%Ptrperline != 0) ptrcrd++;
@@ -1379,8 +1379,8 @@ int writeHB_mat_char(const char* filename, int M, int N,
     indcrd = nz/Indperline;
     if ( nz%Indperline != 0) indcrd++;
 
-    valcrd = nvalentries/Valperline;
-    if ( nvalentries%Valperline != 0) valcrd++;
+    valcrd = nvalentries; // Valperline;
+    // if ( nvalentries%Valperline != 0) valcrd++;
 
     if ( Nrhs > 0 ) {
        if ( Rhsfmt == NULL ) Rhsfmt = Valfmt;
@@ -1398,95 +1398,95 @@ int writeHB_mat_char(const char* filename, int M, int N,
 
 /*  Print header information:  */
 
-    fprintf(out_file,"%-72s%-8s\n%14d%14d%14d%14d%14d\n",Title, Key, totcrd,
-            ptrcrd, indcrd, valcrd, rhscrd);
-    fprintf(out_file,"%3s%11s%14d%14d%14d\n",Type,"          ", M, N, nz);
-    fprintf(out_file,"%-16s%-16s%-20s", Ptrfmt, Indfmt, Valfmt);
-    if ( Nrhs != 0 ) {
-/*     Print Rhsfmt on fourth line and                                    */
-/*           optional fifth header line for auxillary vector information: */
-       fprintf(out_file,"%-20s\n%-14s%d\n",Rhsfmt,Rhstype,Nrhs);
-    } else fprintf(out_file,"\n");
+    // fprintf(out_file,"%-72s%-8s\n%14d%14d%14d%14d%14d\n",Title, Key, totcrd,
+    //        ptrcrd, indcrd, valcrd, rhscrd);
+    // fprintf(out_file,"%3s%11s%14d%14d%14d\n",Type,"          ", M, N, nz);
+    // fprintf(out_file,"%-16s%-16s%-20s", Ptrfmt, Indfmt, Valfmt);
+//     if ( Nrhs != 0 ) {
+// /*     Print Rhsfmt on fourth line and                                    */
+// /*           optional fifth header line for auxillary vector information: */
+//        fprintf(out_file,"%-20s\n%-14s%d\n",Rhsfmt,Rhstype,Nrhs);
+//     } else fprintf(out_file,"\n");
 
     offset = 1-_SP_base;  /* if base 0 storage is declared (via macro definition), */
                           /* then storage entries are offset by 1                  */
 
-/*  Print column pointers:   */
-    for (i=0;i<N+1;i++)
-    {
-       entry = colptr[i]+offset;
-       fprintf(out_file,pformat,entry);
-       if ( (i+1)%Ptrperline == 0 ) fprintf(out_file,"\n");
-    }
+// /*  Print column pointers:   */
+//     for (i=0;i<N+1;i++)
+//     {
+//        entry = colptr[i]+offset;
+//        fprintf(out_file,pformat,entry);
+//        if ( (i+1)%Ptrperline == 0 ) fprintf(out_file,"\n");
+//     }
 
-   if ( (N+1) % Ptrperline != 0 ) fprintf(out_file,"\n");
+   // if ( (N+1) % Ptrperline != 0 ) fprintf(out_file,"\n");
 
 /*  Print row indices:       */
     for (i=0;i<nz;i++)
     {
        entry = rowind[i]+offset;
-       fprintf(out_file,iformat,entry);
-       if ( (i+1)%Indperline == 0 ) fprintf(out_file,"\n");
+       // fprintf(out_file,iformat,entry);
+       // if ( (i+1)%Indperline == 0 ) fprintf(out_file,"\n");
     }
 
-   if ( nz % Indperline != 0 ) fprintf(out_file,"\n");
+   // if ( nz % Indperline != 0 ) fprintf(out_file,"\n");
 
 /*  Print values:            */
 
     if ( Type[0] != 'P' ) {          /* Skip if pattern only  */
-    for (i=0;i<nvalentries;i++)
-    {
-       fprintf(out_file,vformat,val+i*Valwidth);
-       if ( (i+1)%Valperline == 0 ) fprintf(out_file,"\n");
-    }
+    // for (i=0;i<nvalentries;i++)
+    // {
+    //    fprintf(out_file,vformat,val+i*Valwidth);
+    //    if ( (i+1)%Valperline == 0 ) fprintf(out_file,"\n");
+    // }
 
-    if ( nvalentries % Valperline != 0 ) fprintf(out_file,"\n");
+    // if ( nvalentries % Valperline != 0 ) fprintf(out_file,"\n");
 
 /*  Print right hand sides:  */
     acount = 1;
     linemod=0;
-    if ( Nrhs > 0 ) {
-      for (j=0;j<Nrhs;j++) {
-       for (i=0;i<nrhsentries;i++)
-       {
-          fprintf(out_file,rformat,rhs+i*Rhswidth);
-          if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
-       }
-       if ( acount%Rhsperline != linemod ) {
-          fprintf(out_file,"\n");
-          linemod = (acount-1)%Rhsperline;
-       }
-       if ( Rhstype[1] == 'G' ) {
-         for (i=0;i<nrhsentries;i++)
-         {
-           fprintf(out_file,rformat,guess+i*Rhswidth);
-           if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
-         }
-         if ( acount%Rhsperline != linemod ) {
-            fprintf(out_file,"\n");
-            linemod = (acount-1)%Rhsperline;
-         }
-       }
-       if ( Rhstype[2] == 'X' ) {
-         for (i=0;i<nrhsentries;i++)
-         {
-           fprintf(out_file,rformat,exact+i*Rhswidth);
-           if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
-         }
-         if ( acount%Rhsperline != linemod ) {
-            fprintf(out_file,"\n");
-            linemod = (acount-1)%Rhsperline;
-         }
-       }
-      }
-    }
+    // if ( Nrhs > 0 ) {
+    //   for (j=0;j<Nrhs;j++) {
+    //    for (i=0;i<nrhsentries;i++)
+    //    {
+    //       fprintf(out_file,rformat,rhs+i*Rhswidth);
+    //       if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
+    //    }
+    //    if ( acount%Rhsperline != linemod ) {
+    //       fprintf(out_file,"\n");
+    //       linemod = (acount-1)%Rhsperline;
+    //    }
+    //    if ( Rhstype[1] == 'G' ) {
+    //      for (i=0;i<nrhsentries;i++)
+    //      {
+    //        fprintf(out_file,rformat,guess+i*Rhswidth);
+    //        if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
+    //      }
+    //      if ( acount%Rhsperline != linemod ) {
+    //         fprintf(out_file,"\n");
+    //         linemod = (acount-1)%Rhsperline;
+    //      }
+    //    }
+    //    if ( Rhstype[2] == 'X' ) {
+    //      for (i=0;i<nrhsentries;i++)
+    //      {
+    //        fprintf(out_file,rformat,exact+i*Rhswidth);
+    //        if ( acount++%Rhsperline == linemod ) fprintf(out_file,"\n");
+    //      }
+    //      if ( acount%Rhsperline != linemod ) {
+    //         fprintf(out_file,"\n");
+    //         linemod = (acount-1)%Rhsperline;
+    //      }
+    //    }
+    //   }
+    // }
 
     }
-
-    if ( fclose(out_file) != 0){
-      REprintf("Error closing file in writeHB_mat_char().\n");
-      return 0;
-    } else return 1;
+    // if ( fclose(out_file) != 0){
+    //   REprintf("Error closing file in writeHB_mat_char().\n");
+    //   return 0;
+    // } else return 1;
+		return 1;
 
 }
 

@@ -5,7 +5,7 @@
  \description{
    This data set gives an example consisting of observed data, ratio edits, range restrictions and nested balance edits.
  }
- \usage{NestedEx}
+ \usage{data(NestedEx)}
  \format{A list containing the followings:
  \itemize{
  \item \bold{D.obs}: \code{data.frame} of observed data with \eqn{n=1000} records and \eqn{p=11} variables.

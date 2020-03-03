@@ -24,7 +24,7 @@ readData(Y.original, ratio = NULL, range = NULL, balance = NULL, eps.bal = 0.6)
 \details{
 \code{Y.original} has \eqn{n} records and \eqn{p} variables. The variable names (column names) of \code{Y.original} are used to specify \code{ratio} edits.
 
-The edit rules are either imported from text files (see \code{\link{makeDemoTxt}}) or written by \pkg{editrules} package's syntax. 
+The edit rules are either imported from text files or written by \pkg{editrules} package's syntax. 
 
 A balance edit is considered as two inequality constraints with the threshold, i.e., `A = B' is converted to `-eps.bal < A - B < eps.bal' before computation. 
 
@@ -45,21 +45,18 @@ readData returns an \code{\link{EditIn.data}} object which consists of
 \references{
 Hang J. Kim, Lawrence H. Cox, Alan F. Karr, Jerome P. Reiter and Quanli Wang (2015). "Simultaneous Edit-Imputation for Continuous Microdata", Journal of the American Statistical Association, DOI: 10.1080/01621459.2015.1040881.	\cr\cr
 Edwin de Jonge and Mark van der Loo (2013). editrules: R package for parsing, applying, and
-  manipulating data cleaning rules. R package version 2.7.2. http://CRAN.R-project.org/package=editrules
+  manipulating data cleaning rules. R package version 2.7.2.
 }
-\seealso{\code{\link{makeDemoTxt}}, \code{\link{editmatrix}}} 
+\seealso{\code{\link{editmatrix}}} 
 \examples{
 ### option 1. import from text files ###
 
 data(NestedEx)
-makeDemoTxt(NestedEx)     # make demo textfiles from NestedEx dataset
  
-D_obs1 = read.table("Demo_D_obs.txt", header = TRUE) 
-  # The original data file has a header with variable names 
-  # to be used in ratio edit description.
-Ratio1 = read.table("Demo_Ratio_edit.txt", header = FALSE) 
-Range1 = read.table("Demo_Range_edit.txt", header = FALSE) 
-Balance1 = read.table("Demo_Balance_edit.txt", header = FALSE) 
+D_obs1 = NestedEx$D.obs
+Ratio1 = NestedEx$Ratio.edit
+Range1 = NestedEx$Range.edit
+Balance1 = NestedEx$Balance.edit
 
 data1 = readData(Y.original=D_obs1, ratio=Ratio1, range=Range1, 
 balance=Balance1, eps.bal=0.6)

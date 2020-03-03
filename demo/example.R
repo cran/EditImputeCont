@@ -10,16 +10,23 @@ require(EditImputeCont)
 # Input data formats
 ##################
 
-data(NestedEx) ; makeDemoTxt(NestedEx)     # make demo textfiles from NestedEx dataset
- 
-D_obs1 = read.table("Demo_D_obs.txt", header = TRUE) 
-  # The original data file has a header with variable names 
-  # to be used in ratio edit description.
-	
-Ratio1 = read.table("Demo_Ratio_edit.txt", header = FALSE) 
-Range1 = read.table("Demo_Range_edit.txt", header = FALSE) 
-Balance1 = read.table("Demo_Balance_edit.txt", header = FALSE) 
+data(NestedEx) 
 
+# Option 1
+D_obs1 = NestedEx$D.obs
+Ratio1 = NestedEx$Ratio.edit
+Range1 = NestedEx$Range.edit
+Balance1 = NestedEx$Balance.edit
+
+# # Option 2
+# D_obs1 = read.table("Demo_D_obs.txt", header = TRUE)
+#   # The original text data file needs to have a header with variable names
+#   # to be used in ratio edit description.
+# Ratio1 = read.table("Demo_Ratio_edit.txt", header = FALSE)
+# Range1 = read.table("Demo_Range_edit.txt", header = FALSE)
+# Balance1 = read.table("Demo_Balance_edit.txt", header = FALSE)
+
+# Option 3
 ### Alternatively, you can use the syntax of R pacakge 'editrules' ### 
 #
 # Ratio1 <- editmatrix(c(

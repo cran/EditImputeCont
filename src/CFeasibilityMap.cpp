@@ -393,8 +393,8 @@ ColumnVector CFeasibilityMap::get_feasible_tau(CData &Data) {
   ColumnVector list_feasible_type2(Data.n_tau); 
   for (int i_tau = 1; i_tau <=Data.n_tau; i_tau++){
 		if (i_tau%10000000==0) {
-			double Prog = 100.00 * i_tau / Data.n_tau ; 
-			int Prog_int = Prog ; // Changed
+			// double Prog = 100.00 * i_tau / Data.n_tau ;
+			// int Prog_int = Prog ; // Changed 
 			Rprintf( "progress = %d percent\n");
 			// Changed
 		}

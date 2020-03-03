@@ -65,8 +65,8 @@ class CData {
     ColumnVector copy_non_balance_edit(ColumnVector &orig);
     ColumnVector get_compact_vector(ColumnVector &full);
     
-    Matrix ReadMatrix(string file,int row,int col);
-    ColumnVector ReadVec(string file,int row);
+    // Matrix ReadMatrix(string file,int row,int col);  // Commented on 02/08/2020
+    // ColumnVector ReadVec(string file,int row);  // Commented on 02/08/2020
     bool is_case(int i_original,int editcase);
     void set_logUnif_case2(int i_original, int i_tau, double v);
     double get_logUnif_y_tilde(ColumnVector &s, int i_tau, int i_original);
@@ -86,7 +86,7 @@ class CData {
     
     // bool ReadData();		// Commented on 05/21/2015
     // bool ReadOptionalData();		// Commented on 05/21/2015
-    bool ReadDimInfo();
+    // bool ReadDimInfo();			// Commented on 02/08/2020
     void build_index_for_balance_edit();
     void initilize_balance_edits();
     void initilize_obs_fail_matrix();

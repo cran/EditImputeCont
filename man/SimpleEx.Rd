@@ -5,7 +5,7 @@
  \description{
    This data set gives a simple example consisting of observed data, ratio edits and a (simple) balance edit.
  }
- \usage{SimpleEx}
+ \usage{data(SimpleEx)}
  \format{A list containing the followings:
  \itemize{
  \item \bold{D.obs}: \code{data.frame} of observed data with \eqn{n=1000} records and \eqn{p=4} variables.

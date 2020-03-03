@@ -250,46 +250,46 @@ void CData::set_logUnif_case2(int i_original, int i_tau, double v) {
   logUnif_case2(Original2Faulty[i_original-1],i_tau) = v;
 }
 
-bool CData::ReadDimInfo() {
-  FILE *file_import;
-  file_import = fopen(fn_makefilename(data_folder,"dimension.txt").c_str(),"r");
-  fscanf(file_import, "%d", &n_sample); 
-  fscanf(file_import, "%d", &n_var); 
-  fscanf(file_import, "%d", &n_EditVec); 
-  fscanf(file_import, "%d", &n_balance_edit);  
-  fscanf(file_import, "%f", &seed_no); 
-  fscanf(file_import, "%f", &epsilon);
-  fclose(file_import);
-  n_tau = ipow(2,n_var)-2;
-  return true;
-}
+// bool CData::ReadDimInfo() { 	// Commented on 02/08/2020
+//   FILE *file_import;
+//   file_import = fopen(fn_makefilename(data_folder,"dimension.txt").c_str(),"r");
+//   fscanf(file_import, "%d", &n_sample);
+//   fscanf(file_import, "%d", &n_var);
+//   fscanf(file_import, "%d", &n_EditVec);
+//   fscanf(file_import, "%d", &n_balance_edit);
+//   fscanf(file_import, "%f", &seed_no);
+//   fscanf(file_import, "%f", &epsilon);
+//   fclose(file_import);
+//   n_tau = ipow(2,n_var)-2;
+//   return true;
+// }
 
-Matrix CData::ReadMatrix(string file,int row,int col) {
-  FILE *file_import;
-  float temp_import;
-  Matrix mat(row,col);
-  file_import = fopen(fn_makefilename(data_folder,file).c_str(),"r");
-  for (int i=1; i<=row; i++){
-    for (int j=1; j<=col; j++){
-      fscanf(file_import, "%f", &temp_import); 
-      mat(i,j)=temp_import;
-    }
-  }
-  fclose(file_import);
-  return mat;
-}
+// Matrix CData::ReadMatrix(string file,int row,int col) { 	// Commented on 02/08/2020
+//   FILE *file_import;
+//   float temp_import;
+//   Matrix mat(row,col);
+//   file_import = fopen(fn_makefilename(data_folder,file).c_str(),"r");
+//   for (int i=1; i<=row; i++){
+//     for (int j=1; j<=col; j++){
+//       fscanf(file_import, "%f", &temp_import);
+//       mat(i,j)=temp_import;
+//     }
+//   }
+//   fclose(file_import);
+//   return mat;
+// }
 
-ColumnVector CData::ReadVec(string file,int row) {
-  FILE *file_import;
-  float temp_import;
-  ColumnVector vec(row);
-  file_import = fopen(fn_makefilename(data_folder,file).c_str(),"r");
-  for (int i=1; i<=row; i++){
-    fscanf(file_import, "%f", &temp_import); vec(i)=temp_import;
-  }
-  fclose(file_import);
-  return vec;
-}
+// ColumnVector CData::ReadVec(string file,int row) {		// Commented on 02/08/2020
+//   FILE *file_import;
+//   float temp_import;
+//   ColumnVector vec(row);
+//   file_import = fopen(fn_makefilename(data_folder,file).c_str(),"r");
+//   for (int i=1; i<=row; i++){
+//     fscanf(file_import, "%f", &temp_import); vec(i)=temp_import;
+//   }
+//   fclose(file_import);
+//   return vec;
+// }
 
 bool CData::is_case(int i_original,int editcase) {//editcase 0,1,2
   return obs_edit_fail(i_original,n_balance_edit+2) == editcase;

@@ -614,7 +614,7 @@ STATIC void chsign_bounds(REAL *lobound, REAL *upbound)
 /* ---------------------------------------------------------------------------------- */
 STATIC REAL rand_uniform(lprec *lp, REAL range)
 {
-  static MYBOOL randomized = FALSE;
+  // static MYBOOL randomized = FALSE;
 /*
   if(!randomized) {
     srand((unsigned) time( NULL ));
